@@ -81,7 +81,39 @@ print $q->h1('Hello, World!');
 print $q->end_html;
 ```
 
-- Introduction of CVEs (Common Vulnerabilities and Exposures)
+---
+
+## What could go wrong?
+
+- Introduction of CVEs (Common Vulnerabilities and Exposures) and exploits
+
+### Examples
+``` 
+http://{url}/cgi-bin/FormMail.pl?recipient=spam@malicious.com&subject=Urgent=GotYou!
+```
+
+```bash
+perl script.pl 'http://www.yourcompany.com; rm -rf /'
+```
+
+### Mitigation
+
+- For FormMail: Validate and sanitize all inputs, particularly email addresses.
+- For cgic: Use functions with bounds checking, such as ```strncpy```, and perform proper input validation
+
+
+---
+ ## Things needed to change
+
+- Security Awareness and Education
+- Code Reviews and Audits ( starting with peer programming / reviews) 
+- Static Analysis Tools ( tools like ```lint``` ) 
+- Following mailing lists & advisories such as CERT 
+- Environment Hardening & Patch Management
+- Security Testing and Penetration Testing (tools like ```satan``` ) 
+- Secure Development Lifecycle (SDL)
+- Process Integration: Incorporating security into every phase of the software development lifecycle, from design to deployment.
+- Defining security requirements alongside functional requirements.
 
 ---
 
@@ -109,17 +141,25 @@ print $q->end_html;
 
 ---
 
+![bg 70%](./assets/supply-chain-threats.png)
+
+---
+
+## Why do we care?
+
+
+---
+## Consumers being consumed
+
+- OpenJDK Temurin Example
+- Quarkus example
+
+---
+
 ## Introduction to Quarkus
 
 - Supersonic Subatomic Java  :rocket:
 - Designed for Kubernetes and optimized for GraalVM and OpenJDK HotSpot
-
----
-
-## Secure Supply Chain
-
-- Importance of securing the supply chain
-- Threats and vulnerabilities in software supply chains
 
 ---
 
@@ -134,7 +174,7 @@ print $q->end_html;
 ## Generating SBOM Artifact
 
 - Tools and practices for generating SBOMs
-- Example: Using Syft to generate an SBOM
+- Example: Using CycloneDX to generate an SBOM
 
 ---
 
@@ -203,9 +243,7 @@ java -cp target/log4j-example-1.0-SNAPSHOT.jar com.example.App
 
 ## Using SBOM to Identify the CVE
 
-1. **Generate SBOM Using CycloneDX Maven Plugin:**
-
-Add the CycloneDX Maven plugin to your `pom.xml`:
+1. **Generate SBOM** Add the CycloneDX Maven plugin to your `pom.xml`:
 
 ```xml
 <build>
@@ -225,6 +263,7 @@ Add the CycloneDX Maven plugin to your `pom.xml`:
     </plugins>
 </build>
 ```
+
 ---
 
 2. **Generate the SBOM:**
