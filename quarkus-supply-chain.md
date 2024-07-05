@@ -1,22 +1,22 @@
 ---
 marp: true
-theme: default
-header: |
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="custom-styles.css">
+theme: 
+paginate: true
 ---
 
-# Quarkus in Secure Supply Chain
+# Software Supply Chain Security
 
-## Red Hat
+## What, Why and how
 
-![bg right](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/RedHat.svg/1200px-RedHat.svg.png)
+JBug User Group Korea. Jul 5th, 2024
+
+![bg right 33%](./assets/Logo-Red_Hat-A-Standard-RGB.svg)
 
 ---
 
 ## Introduction to Quarkus
 
-- Supersonic Subatomic Java
+- Supersonic Subatomic Java  :rocket:
 - Designed for Kubernetes and optimized for GraalVM and OpenJDK HotSpot
 
 ---
