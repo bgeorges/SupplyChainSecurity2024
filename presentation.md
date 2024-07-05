@@ -4,8 +4,9 @@ theme: default
 header: "OSS - Software Supply Chain Security"
 footer: "JBoss User Group Korea"
 paginate: true
-backgroundColor: #fff
+backgroundColor: #ffff
 ---
+
 
 # Software Supply Chain Security
 
@@ -17,22 +18,26 @@ Bruno Georges
 
 ---
 
-# Software Secure Supply Chain
+## Agenda
 
-# Software Secure Supply Chain
-
-## Introduction
-
-- Importance of secure supply chains
-- Key concepts and practices
+- What is Software Supply Chain Security
+  - Let’s review together what it means and why does it matter
+  - History and Facts.
+  - Vulnerability exploit examples
+- Going Deeper
+  - Identify Supply Chain Attack Vectors
+  - How can we secure this end to end
+  - Standards, Frameworks, Tools: SSDF, SLSA, SBOM, Sigstore
+- Putting this together
+- Takeaways and recommendations
+- Q&A
 
 ---
 
-## Early Software Supply Chains
+## Back in the Web 1.0 days
 
-### Example: Perl and C CGI Scripts
+### Perl CGI Example
 
-#### Perl CGI Example
 
 ```perl
 #!/usr/bin/perl
@@ -40,7 +45,7 @@ print "Content-type: text/html\n\n";
 print "<html><body>Hello, World!</body></html>";
 ```
 
-#### C CGI Example
+### C CGI Example
 
 ```c
 #include <stdio.h>
@@ -51,9 +56,11 @@ int main() {
     return 0;
 }
 ```
+---
 
-- No external dependencies
-- Simple, isolated scripts
+## Supply Chain 1.0
+
+![img bottom 80%](./assets/supply-chain-1_0.png)
 
 ---
 
@@ -64,7 +71,7 @@ int main() {
 - Use of libraries like `cgi-bin`, `Mail::Form` in Perl
 - Increased functionality, but also new vulnerabilities
 
-#### Perl with Dependencies
+### Perl with Dependencies
 
 ```perl
 use CGI;
@@ -95,10 +102,46 @@ print $q->end_html;
 
 - Framework for ensuring the integrity of software artifacts
 
-#### Components
+### Components
 
 - **SBOM** (Software Bill of Materials)
 - **Sigstore** for signing and verifying software
+
+---
+
+## Introduction to Quarkus
+
+- Supersonic Subatomic Java  :rocket:
+- Designed for Kubernetes and optimized for GraalVM and OpenJDK HotSpot
+
+---
+
+## Secure Supply Chain
+
+- Importance of securing the supply chain
+- Threats and vulnerabilities in software supply chains
+
+---
+
+## Building with External Dependencies
+
+1. Managing dependencies
+2. Ensuring the integrity of dependencies
+3. Using trusted sources and repositories
+
+---
+
+## Generating SBOM Artifact
+
+- Tools and practices for generating SBOMs
+- Example: Using Syft to generate an SBOM
+
+---
+
+## Signing with Sigstore
+
+- Benefits of signing artifacts
+- Example: Signing Quarkus artifacts with Sigstore
 
 ---
 
@@ -116,6 +159,7 @@ cd log4j-example
 mvn archetype:generate -DgroupId=com.example -DartifactId=log4j-example -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 cd log4j-example
 ```
+---
 
 2. **Add the Vulnerable Log4j Dependency to `pom.xml`:**
 
@@ -128,6 +172,7 @@ cd log4j-example
     </dependency>
 </dependencies>
 ```
+---
 
 3. **Create a Sample Java File:**
 
@@ -145,6 +190,7 @@ public class App {
     }
 }
 ```
+---
 
 4. **Compile and Run the Project:**
 
@@ -153,7 +199,9 @@ mvn package
 java -cp target/log4j-example-1.0-SNAPSHOT.jar com.example.App
 ```
 
-#### Using SBOM to Identify the CVE
+---
+
+## Using SBOM to Identify the CVE
 
 1. **Generate SBOM Using CycloneDX Maven Plugin:**
 
@@ -177,6 +225,7 @@ Add the CycloneDX Maven plugin to your `pom.xml`:
     </plugins>
 </build>
 ```
+---
 
 2. **Generate the SBOM:**
 
@@ -196,7 +245,7 @@ cycloneDXBomUtility analyze -i target/bom.xml
 
 ### Exploiting the Log4j Vulnerability
 
-#### Python Script to Exploit Log4j CVE-2021-44228:
+#### Python Script to Exploit Log4j CVE-2021-44228
 
 ```python
 import requests
@@ -215,6 +264,8 @@ headers = {
 response = requests.get(url, headers=headers)
 print("Exploit sent, check your LDAP server for interactions.")
 ```
+
+---
 
 #### Running the Exploit
 
@@ -243,7 +294,7 @@ To remediate the Log4j vulnerability, update to a non-vulnerable version (e.g., 
 
 1. **Update `pom.xml`:**
 
-```xml
+```
 <dependencies>
     <dependency>
         <groupId>org.apache.logging.log4j</groupId>
@@ -270,6 +321,40 @@ java -cp target/log4j-example-1.0-SNAPSHOT.jar com.example.App
 
 ---
 
-# Thank You!
+# Thank You
 
 - Questions and Discussion
+
+---
+
+---
+
+## Bootstrap Grid Example
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Key Points on Secure Supply Chain Attacks</h2>
+      <ul>
+        <li>Tampering with source code</li>
+        <li>Compromised dependencies</li>
+        <li>Malicious build processes</li>
+        <li>Unauthorized package uploads</li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <img src="https://slsa.dev/spec/v1.0/threats-overview/supply-chain-threats.png" alt="Supply Chain Image" class="img-fluid">
+    </div>
+  </div>
+</div>
+
+---
+
+
+---
+
+# References
+
+- SLSA Supply Chain Threats Overview: SLSA Spec
+- 
+

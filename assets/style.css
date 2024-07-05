@@ -1,4 +1,4 @@
-/* custom-styles.css */
+/* style.css */
 
 /* Set global font type and size */
 body {
@@ -8,7 +8,7 @@ body {
 
 /* Style for headings */
 h1 {
-  font-size: 12em;
+  font-size: 2em;
   font-weight: bold;
 }
 
@@ -17,7 +17,6 @@ h2 {
   font-weight: bold;
 }
 
-/* Style for paragraphs */
 p {
   font-size: 1em;
 }
@@ -32,7 +31,7 @@ section {
 
 /* Logo in the top right corner */
 header::before {
-  content: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/RedHat.svg/1200px-RedHat.svg.png');
+  content: url('./Logo-Red_Hat-A-Standard-RGB.Medium-logo-\(transparent-background\).png');
   position: absolute;
   top: 10px;
   right: 10px;
