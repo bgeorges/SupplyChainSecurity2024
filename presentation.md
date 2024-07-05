@@ -145,18 +145,39 @@ perl script.pl 'http://www.yourcompany.com; rm -rf /'
 
 ---
 
+
 ## Why do we care?
 
+[NASA’s Boeing Starliner Crew Flight Test Launch – June 5, 2024 (Official NASA Broadcast)](https://www.youtube.com/watch?v=HneVxAmYcaA) 
+![bg right 90%](./assets/rht-openjdk-nasa.jpg)
 
 ---
 ## Consumers being consumed
 
-- OpenJDK Temurin Example
+- OpenJDK Temurin
 - Quarkus example
 
 ---
 
-## Introduction to Quarkus
+## Shifting Left
+### Red Hat play a leadship and key role upstream
+
+- Red Hat [joined](https://www.redhat.com/en/blog/red-hat-joins-eclipse-adoptium-working-group) Eclipse Adptium WG in 2021. The OpenJDK code, build, tests and binaires have now a new home upstream.
+- The Adoptium [security audit report](https://ostif.org/wp-content/uploads/2024/06/Temurin-Final-Report.pdf) and [response document](https://adoptium.net/pdf/temurin-audit-response.pdf) were published last month. :rocket:
+- With the European Union’s Cyber Resilience Act (CRA) and for all this to work, we need to establish a common specifications for secure software development based on open source best practices. [Bring OSS foundation together and have a single voice](https://blogs.eclipse.org/post/mike-milinkovich/open-source-community-building-cybersecurity-processes-cra-compliance)
+- Collaboration on the [Adoptium Temurin build's Supply Chain Security](https://outreach.eclipse.foundation/adoptium-temurin-supply-chain-security)
+
+---
+
+## Eclipse Adoptium Download Trends
+
+(https://dash.adoptium.net/trends)
+
+![bg right 100%](./assets/adoptium-trends.png)
+
+---
+
+## Quarkus - Example
 
 - Supersonic Subatomic Java  :rocket:
 - Designed for Kubernetes and optimized for GraalVM and OpenJDK HotSpot
@@ -366,33 +387,7 @@ java -cp target/log4j-example-1.0-SNAPSHOT.jar com.example.App
 
 ---
 
----
-
-## Bootstrap Grid Example
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <h2>Key Points on Secure Supply Chain Attacks</h2>
-      <ul>
-        <li>Tampering with source code</li>
-        <li>Compromised dependencies</li>
-        <li>Malicious build processes</li>
-        <li>Unauthorized package uploads</li>
-      </ul>
-    </div>
-    <div class="col-md-6">
-      <img src="https://slsa.dev/spec/v1.0/threats-overview/supply-chain-threats.png" alt="Supply Chain Image" class="img-fluid">
-    </div>
-  </div>
-</div>
-
----
-
-
----
-
-# References
+# References & Credits
 
 - SLSA Supply Chain Threats Overview: SLSA Spec
 - 
