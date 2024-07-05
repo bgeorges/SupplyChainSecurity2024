@@ -1,0 +1,66 @@
+/* custom-styles.css */
+
+/* Set global font type and size */
+body {
+  font-family: 'Arial, sans-serif';
+  font-size: 16px;
+}
+
+/* Style for headings */
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/* Style for paragraphs */
+p {
+  font-size: 1em;
+}
+
+/* Background image for slides */
+section {
+  background-image: url('https://www.redhat.com/sites/default/files/styles/video_background/public/video/2021/Red_Hat_Tech_Academy_BG.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+/* Logo in the top right corner */
+header::before {
+  content: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/RedHat.svg/1200px-RedHat.svg.png');
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 100px;
+  height: auto;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
