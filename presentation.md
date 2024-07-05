@@ -329,7 +329,9 @@ java -cp target/log4j-example-1.0-SNAPSHOT.jar com.example.App
 ## Signing
 install : 
 ```
-brew install sigstore```
+brew install sigstore
+```
+
 ---
 
 ## Current SLSA Level Achieved
